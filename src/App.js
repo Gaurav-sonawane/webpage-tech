@@ -9,20 +9,22 @@ export default function App() {
 }
 
 function Myfun() {
-  let [counter, setCounter] = useState(0);
+  const [msg, setMsg] = useState("");
 
-  const increment = () => {
-    counter = counter + 1;
-
-    setCounter(counter);
+  const changeContaint = (e) => {
+    setMsg(e.target.value);
   };
   return (
     <div>
-      <div>
-        <h1>counter application</h1>
-        <input type="button" value="click me" onClick={increment} />
-      </div>
-      <h1>Like {counter} </h1>
+      <h1>input Box</h1>
+      <input
+        type="text"
+        placeholder="type here"
+        onChange={changeContaint}
+        className="form-control"
+      />
+
+      <div>{msg}</div>
     </div>
   );
 }
