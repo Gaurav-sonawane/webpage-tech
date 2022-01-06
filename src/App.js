@@ -2,29 +2,39 @@ import { useState } from "react";
 
 export default function App() {
   return (
-    <div>
-      <Myfun />
-    </div>
+    <>
+      <MyComponent />
+    </>
   );
 }
 
-function Myfun() {
-  const [msg, setMsg] = useState("");
+function MyComponent() {
+  const [list, setList] = useState([]);
 
-  const changeContaint = (e) => {
-    setMsg(e.target.value);
+  const tweet = () => {
+    const newList = [...list, "hello world"];
+
+    setList(newList);
   };
+
+  const deletetweet = () => {
+    list.splice(0, 1);
+
+    const newList = [...list];
+    setList(newList);
+  };
+
   return (
     <div>
-      <h1>input Box</h1>
-      <input
-        type="text"
-        placeholder="type here"
-        onChange={changeContaint}
-        className="form-control"
-      />
+      <h1>Working with input element</h1>
+      <input type="button" value="tweet" onClick={tweet} />
+      <input type="button" value="delete" onClick={deletetweet} />
 
-      <div>{msg}</div>
+      <div>
+        {list.map((item) => (
+          <div>{item}</div>
+        ))}
+      </div>
     </div>
   );
 }
