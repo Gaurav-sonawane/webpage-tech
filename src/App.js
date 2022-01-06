@@ -9,27 +9,26 @@ export default function App() {
 }
 
 function MyComponent() {
+  const [msg, setMsg] = useState("");
   const [list, setList] = useState([]);
 
-  const tweet = () => {
-    const newList = [...list, "hello world"];
-
-    setList(newList);
+  const fetchContaint = (e) => {
+    setMsg(e.target.value);
   };
 
-  const deletetweet = () => {
-    list.splice(0, 1);
-
-    const newList = [...list];
+  const tweetHere = () => {
+    const newList = [msg, ...list];
     setList(newList);
+    setMsg("");
   };
 
   return (
     <div>
-      <h1>Working with input element</h1>
-      <input type="button" value="tweet" onClick={tweet} />
-      <input type="button" value="delete" onClick={deletetweet} />
-
+      <h1>tweeter</h1>
+      <div>
+        <input type="text" onChange={fetchContaint} placeholder="tweet here" />
+        <input type="button" value="tweet" onClick={tweetHere} />
+      </div>
       <div>
         {list.map((item) => (
           <div>{item}</div>
